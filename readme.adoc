@@ -1,0 +1,23 @@
+:toc:
+:sectnums:
+:toclevels: 5
+:sectnumlevels: 5
+:showcomments:
+:xrefstyle: short
+:icons: font
+:source-highlighter: coderay
+:tick: &#x2714;
+:pound: &#xA3;
+
+= New CSProj format
+
+The easiest and perhaps best way to convert from the old `.csproj` format to the new one is to simply completely replace the content as follows
+
+----
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net46</TargetFramework>
+  </PropertyGroup>
+</Project>
+----
