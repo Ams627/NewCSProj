@@ -21,3 +21,54 @@ The easiest and perhaps best way to convert from the old `.csproj` format to the
   </PropertyGroup>
 </Project>
 ----
+
+== Output Path
+
+The default output path for projects has changed. By default, this contains the .Net Framework name 
+as the last component of the path. For example:
+
+----
+r:\proggen-all\proggen-newproj\proggen\bin\debug\net472
+----
+
+In order to change this back to the "old" output path, we can add the following to the `.csproj` file:
+
+<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+== AssemblyInfo.cs
+
+By default, this file is no longer included in new projects and if you do convert a project to the new
+format and do not delete `AssemblyInfo.cs`, you will see conflicts.
+
+In order to allow properties to be defined in AssemblyInfo.cs, add one or more
+of the following attributes to the `.csproj` file:
+
+----
+<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+<GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
+----
+
+== Directory.build.props
+
+Directory.build.props is picked up by MS Build etc. You can place it in the root of your repo and 
+it will be used for all projects.
+
+----
+<Project>
+    <PropertyGroup>
+        <Company>Blah Blah things</Company>
+        <Copyright>Copyright © 2020</Copyright>
+        <AssemblyVersion>2.7.1.8</AssemblyVersion>
+        <FileVersion>5.9.2.6</FileVersion>
+        <Version>3.1.4.1</Version>
+    </PropertyGroup>
+</Project>
+----
