@@ -48,7 +48,6 @@ different:
 
 Replace 
 
-
 ----
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProject", "MyProject\MyProject.csproj", "{03466056-3460-4B9C-A4DF-F8051DC8238E}"
 ----
@@ -108,3 +107,19 @@ make sure it is encoded as UTF-8
 
 In order to get the copyright symbol into the explorer Properties dialog box, you need to set
 the AssemblyInformationalVersionAttribute
+
+== .Net 5.0
+
+.Net 5.0 projects do not, by default, generate executables (rather they generate DLLs). These can then be passed to the `dotnet` command
+by typing `dotnet run myprog.dll`. These DLLs can thus run on any platform.
+
+To keep using Windows executables, we must _publish_ our project. In order to do this, we should add the following to our `.csproj` file:
+
+----
+<PublishSingleFile>true</PublishSingleFile>
+<SelfContained>false</SelfContained>
+<RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+----
+
+
+
